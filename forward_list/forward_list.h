@@ -1,4 +1,6 @@
 // 单向链表
+// _head 指向带头结点
+// _tail 指向最后一个元素
 #pragma once
 namespace jiao{
 
