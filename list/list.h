@@ -16,23 +16,27 @@ public:
     ~list();    // 销毁链表
 
     void insert(Node* pos, const T& val);   // 在 pos 处插入元素
+    void erase(Node* pos);                  // 删除 pos 处的元素
 
+    void clear();
 
     Node* begin() const;            // 返回链表第一个元素指针
     Node* end() const;              // 返回链表最后一个元素指针
 
 private:
-    Node* _head;        // 头指针
-    Node* _tail;        // 尾指针
+    Node* _head;        // 头指针（带头结点）
+    Node* _tail;        // 尾指针（最后一个结点的下一个）
     int _size;          // 链表长度
 };
 
 template <typename T>
 list<T>::list(){
     _head = new Node;
+    _tail = new Node;
     _head->prev = nullptr;
-    _head->next = nullptr;
-    _tail = _head;
+    _head->next = _tail;
+    _tail->prev = _head;
+    _tail->next = nullptr;
     _size = 0;
 }
 
@@ -41,7 +45,6 @@ list<T>::~list(){
     clear();                    // 清空链表
     delete _head;               // 删除头指针
 }
-
 
 template <typename T>
 void list<T>::insert(Node* pos, const T& val){
@@ -54,11 +57,24 @@ void list<T>::insert(Node* pos, const T& val){
     pos->prev->next = newNode;  // pos 的前驱结点的后继指针域指向新结点
     pos->prev = newNode;        // pos 的前驱指针域指向新结点
 
-    if(pos == _head)            // 如果 pos 是头指针
-        _head = newNode;        // 头指针指向新结点
-    if(pos == _tail)            // 如果 pos 是尾指针
-        _tail = newNode;        // 尾指针指向新结点
     ++_size;                    // 链表长度加一
+}
+
+template <typename T>
+void list<T>::erase(Node* pos){
+    if(pos == nullptr) return ;     // pos 为空指针，直接返回
+    if(_size == 0) return ;         // 链表为空，直接返回
+    pos->prev->next = pos->next;    // pos 的前驱结点的后继指针域指向 pos 的后继结点
+    pos->next->prev = pos->prev;    // pos 的后继结点的前驱指针域指向 pos 的前驱结点
+
+    delete pos;                     // 删除 pos 结点
+    --_size;                        // 链表长度减一
+}
+
+
+template <typename T>
+void list<T>::clear(){
+
 }
 
 template <typename T>
@@ -68,7 +84,7 @@ typename list<T>::Node* list<T>::begin() const{
 
 template <typename T>
 typename list<T>::Node* list<T>::end() const{
-    return _tail;
+    return _tail->prev;
 }
 
 
