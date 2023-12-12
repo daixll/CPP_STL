@@ -1,10 +1,6 @@
-<center>
+# 骄骄的数据结构（**data struct**）与算法（**algorithm**） 库
 
-**骄骄** 的 
-
-数据结构（**data struct**）与算法（**algorithm**） 库
-
-</center>
+123
 
 # 数据结构
 
