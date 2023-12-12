@@ -5,13 +5,13 @@ namespace jiao{
 template <typename T>
 class list{
 
-struct Node{
-    T data;     // 数据域
-    Node *prev; // 前驱指针域
-    Node *next; // 后继指针域
-};
-
 public:
+    struct Node{
+        T data;     // 数据域
+        Node *prev; // 前驱指针域
+        Node *next; // 后继指针域
+    };
+
     list();     // 初始化链表
     ~list();    // 销毁链表
 
@@ -19,6 +19,7 @@ public:
     void erase(Node* pos);                  // 删除 pos 处的元素
 
     void clear();
+    int size();
 
     Node* begin() const;            // 返回链表第一个元素指针
     Node* end() const;              // 返回链表最后一个元素指针
@@ -75,6 +76,11 @@ void list<T>::erase(Node* pos){
 template <typename T>
 void list<T>::clear(){
 
+}
+
+template <typename T>
+int list<T>::size(){
+    return _size;
 }
 
 template <typename T>
