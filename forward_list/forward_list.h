@@ -86,7 +86,7 @@ void forward_list<T>::push_back(const T& val){
 
 template <typename T>
 void forward_list<T>::pop_front(){
-    return erase_after(_head);      // 删除头指针后面的结点
+    erase_after(_head);             // 删除头指针后面的结点
 }
 
 template <typename T>
