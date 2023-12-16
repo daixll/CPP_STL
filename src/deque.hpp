@@ -1,6 +1,6 @@
 // 双端队列
 #pragma once
-#include "../list/list.h"
+#include "list.hpp"
 
 namespace jiao{
 
