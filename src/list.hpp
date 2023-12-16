@@ -48,6 +48,7 @@ template <typename T>
 list<T>::~list(){
     clear();                // 清空链表
     delete _head;           // 删除头指针
+    delete _tail;           // 删除尾指针
 }
 
 template <typename T>
@@ -86,7 +87,7 @@ void list<T>::push_front(const T& val){
 
 template <typename T>
 void list<T>::push_back(const T& val){
-    insert(_tail->prev, val);       // 在尾结点的前面插入元素
+    insert(_tail, val);             // 在尾结点的前面插入元素
 }
 
 template <typename T>
